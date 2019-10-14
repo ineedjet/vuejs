@@ -13,9 +13,11 @@ export default {
 }
 </script>
 
-<style scoped>
-p {
-  font-size: 2em;
-  text-align: center;
-}
+<style scoped lang="scss">
+  $blue: #3bbfce;
+  p {
+    color: $blue;
+    font-size: 2em;
+    text-align: center;
+  }
 </style>
