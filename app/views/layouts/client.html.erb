@@ -9,7 +9,7 @@
     <%= stylesheet_pack_tag 'client' %>
   </head>
 
-  <body>
+  <body data-email="<%= current_client.email %>">
     <%= yield %>
   </body>
 </html>
