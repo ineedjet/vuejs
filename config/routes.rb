@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   namespace :staff do
     root 'landing#index'
+    resources :clients, only: %i[index create], shallow: true
   end
 
   namespace :client do

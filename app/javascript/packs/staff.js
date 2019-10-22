@@ -7,6 +7,9 @@
 
 import Vue from 'vue'
 import Staff from '../staff/Staff.vue'
+import api from '../api/api';
+
+Vue.prototype.$api = api;
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({

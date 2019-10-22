@@ -1,18 +1,15 @@
 <template lang='pug'>
-  #app
-    navbar(v-bind:email="email" v-bind:role="role")
-    p {{ message }}
-    StaffDashboard
+  #staff-dashboard
+    h1 Staff Dashboard
+    h2 Clients:
+    tableClients
 </template>
 
 <script>
-  import Navbar from './../Navbar.vue';
-  import StaffDashboard from './StaffDashboard.vue';
-
+  import tableClients from './TableClients.vue';
   export default {
     components: {
-      Navbar,
-      StaffDashboard
+      tableClients
     },
     props: {
       email: {
@@ -31,10 +28,7 @@
 </script>
 
 <style scoped lang="scss">
-  $blue: #3bbfce;
-  p {
-    color: $blue;
-    font-size: 2em;
+  p, h1, h2 {
     text-align: center;
   }
 </style>
