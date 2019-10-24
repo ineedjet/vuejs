@@ -10,15 +10,15 @@ class Staff::ClientsController < ApplicationController
     @client = Client.new(client_params)
 
     if @client.save
-      render json: ClientSerializer.new(@client).serialized_json, status: :created
+      render json: @client, status: :created
     else
-      render json: errors_json, status: :unprocessable_entity
+      render json: @client.errors.as_json, status: :unprocessable_entity
     end
   end
 
   private
 
   def client_params
-    params.require(:client).permit(:name, :email)
+    params.require(:client).permit(:name, :email, :phone, :password, :password_confirmation)
   end
 end

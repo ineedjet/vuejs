@@ -3,13 +3,16 @@
     h1 Staff Dashboard
     h2 Clients:
     tableClients
+    ClientForm
 </template>
 
 <script>
   import tableClients from './TableClients.vue';
+  import ClientForm from './ClientForm.vue';
   export default {
     components: {
-      tableClients
+      tableClients,
+      ClientForm
     },
     props: {
       email: {

@@ -3,12 +3,14 @@
      thead
        tr
          th(scope='col') Name
+         th(scope='col') Phone
          th(scope='col') Email
      tbody
        TableClientRow(v-for="client in clients" :client="client" :key="client.id")
  </template>
 
 <script>
+  import eventBus from './EventBus';
   import TableClientRow from './TableClientRow.vue';
 
   export default {
@@ -20,11 +22,11 @@
         clients: this.getClients(),
       };
     },
-    // mounted() {
-    //   eventBus.$on('createClient', () => {
-    //     this.getClients();
-    //   });
-    // },
+    mounted() {
+      eventBus.$on('createClient', () => {
+        this.getClients();
+      });
+    },
     methods: {
       getClients() {
         this.$api.clients
@@ -41,10 +43,10 @@
 
 <style scoped lang="scss">
   table {
-    text-align: center;
+   text-align: center;
     margin: auto;
-    th {
-      padding: 10px;
+    th, td {
+     padding: 10px 20px;
     }
   }
 </style>

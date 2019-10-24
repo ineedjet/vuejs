@@ -1,6 +1,7 @@
 <template lang='pug'>
    tr
      td {{client.name}}
+     td {{client.phone}}
      td {{client.email}}
  </template>
 
@@ -23,5 +24,8 @@
 <style scoped lang="scss">
   label {
     color: #34495e;
+  }
+  th, td {
+   padding: 10px 20px;
   }
 </style>
