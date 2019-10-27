@@ -9,7 +9,7 @@
     <%= stylesheet_pack_tag 'staff' %>
   </head>
 
-  <body>
+  <body data-email="<%= current_staff.email %>">
     <%= yield %>
   </body>
 </html>

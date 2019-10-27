@@ -6,11 +6,16 @@
 // All it does is render <div>Hello Vue</div> at the bottom of the page.
 
 import Vue from 'vue'
-import App from '../client.vue'
+import Client from '../client/Client.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
-    render: h => h(App)
+    render: h => h(Client, {
+      props: {
+        email: document.body.getAttribute('data-email'),
+        role: "client"
+      }
+    })
   }).$mount()
   document.body.appendChild(app.$el)
 
