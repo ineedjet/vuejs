@@ -1,7 +1,10 @@
 <template lang='pug'>
-  #app
-    navbar(v-bind:email="email" v-bind:role="role")
-    p {{ message }}
+  q-layout(view="hHh lpR fFf")
+    q-header(elevated)
+     navbar(v-bind:email="email" v-bind:role="role")
+    q-page-container
+     q-page.doc-page
+       p {{ message }}
 </template>
 
 <script>

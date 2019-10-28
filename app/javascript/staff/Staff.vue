@@ -1,8 +1,11 @@
 <template lang='pug'>
-  #app
-    navbar(v-bind:email="email" v-bind:role="role")
-    p {{ message }}
-    StaffDashboard
+  q-layout(view="hHh lpR fFf")
+    q-header(elevated)
+     navbar(v-bind:email="email" v-bind:role="role")
+    q-page-container
+     q-page.doc-page
+       p {{ message }}
+       StaffDashboard
 </template>
 
 <script>
@@ -32,9 +35,15 @@
 
 <style scoped lang="scss">
   $blue: #3bbfce;
+  #navbar{
+    height: 65px;
+  }
   p {
     color: $blue;
     font-size: 2em;
     text-align: center;
+  }
+  .q-page-container{
+    margin: 20px;
   }
 </style>
