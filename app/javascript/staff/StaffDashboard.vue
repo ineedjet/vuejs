@@ -4,15 +4,23 @@
     h2 Clients:
     tableClients
     ClientForm
+    h2 Organisations:
+    tableOrganisations
+    OrganisationForm
 </template>
 
 <script>
-  import tableClients from './TableClients.vue';
+  import TableClients from './TableClients.vue';
   import ClientForm from './ClientForm.vue';
+  import TableOrganisations from './TableOrganisations.vue';
+  import OrganisationForm from './OrganisationForm.vue';
+
   export default {
     components: {
-      tableClients,
-      ClientForm
+      TableClients,
+      ClientForm,
+      TableOrganisations,
+      OrganisationForm
     },
     props: {
       email: {

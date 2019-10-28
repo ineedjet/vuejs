@@ -3,9 +3,9 @@
     q-header(elevated)
      navbar(v-bind:email="email" v-bind:role="role")
     q-page-container
-     q-page.doc-page
-       p {{ message }}
-       StaffDashboard
+      q-page.doc-page
+        p {{ message }}
+        StaffDashboard
 </template>
 
 <script>

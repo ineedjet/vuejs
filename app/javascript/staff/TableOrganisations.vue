@@ -3,37 +3,37 @@
      thead
        tr
          th(scope='col') Name
-         th(scope='col') Phone
-         th(scope='col') Email
+         th(scope='col') Inn
+         th(scope='col') Ogrn
      tbody
-       TableClientRow(v-for="client in clients" :client="client" :key="client.id")
+       TableOrganisationRow(v-for="organisation in organisations" :organisation="organisation" :key="organisation.id")
  </template>
 
 <script>
   import eventBus from './EventBus';
-  import TableClientRow from './TableClientRow.vue';
+  import TableOrganisationRow from './TableOrganisationRow.vue';
 
   export default {
     components: {
-      TableClientRow,
+      TableOrganisationRow,
     },
     data() {
       return {
-        clients: this.getClients(),
+       organisations: this.getOrganisations(),
       };
     },
     mounted() {
-      eventBus.$on('createClient', () => {
-        this.getClients();
+      eventBus.$on('createOrganisation', () => {
+        this.getOrganisations();
       });
     },
     methods: {
-      getClients() {
-        this.$api.clients
+      getOrganisations() {
+        this.$api.organisations
           .index()
           .then(
             (response) => {
-              this.clients = response.data;
+              this.organisations = response.data;
             },
           );
       },
