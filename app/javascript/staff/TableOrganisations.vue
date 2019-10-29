@@ -1,13 +1,25 @@
 <template lang='pug'>
-   table.table.mt-5#clients
-     thead
-       tr
-         th(scope='col') Name
-         th(scope='col') Inn
-         th(scope='col') Ogrn
-     tbody
-       TableOrganisationRow(v-for="organisation in organisations" :organisation="organisation" :key="organisation.id")
- </template>
+  .row.justify-center
+     q-table(
+       flat
+       :data="data"
+       :columns="columns"
+       :visible-columns='visibleColumns'
+       @request="onRequest"
+       :pagination.sync="pagination"
+       :loading="loading"
+       loading-label='Loading organisations...'
+       selection="multiple"
+       :selected.sync="selected"
+       row-key="id"
+     )#organisations.full-width
+     .row.justify-center
+       q-btn(
+         label="Удалить"
+         @click="destroy"
+         :disable='disableBtn'
+       )
+</template>
 
 <script>
   import eventBus from './EventBus';
@@ -19,15 +31,43 @@
     },
     data() {
       return {
+       disableBtn: true,
+       selected: [],
+       visibleColumns: ['name', 'formOfOwnership', 'inn', 'ogrn'],
+       loading: false,
+       pagination: {
+        page: 1,
+        rowsPerPage: 15,
+       },
+       columns: [
+        { name: 'id', label: 'ID', field: 'id' },
+        { name: 'name', label: 'Название', field: 'name' },
+        { name: 'formOfOwnership', label: 'Форма собственности', field: 'formOfOwnership' },
+        { name: 'inn', label: 'ИНН', field: 'inn' },
+        { name: 'ogrn', label: 'ОГРН', field: 'ogrn' },
+       ],
+       data: [],
+
        organisations: this.getOrganisations(),
       };
     },
     mounted() {
       eventBus.$on('createOrganisation', () => {
-        this.getOrganisations();
+        this.onRequest();
       });
+     this.onRequest();
+    },
+    updated() {
+     this.disableDeleteBtn();
     },
     methods: {
+      disableDeleteBtn() {
+       if (this.selected.length === 0) {
+        this.disableBtn = true;
+       } else {
+        this.disableBtn = false;
+       }
+      },
       getOrganisations() {
         this.$api.organisations
           .index()
@@ -36,6 +76,54 @@
               this.organisations = response.data;
             },
           );
+      },
+      destroy() {
+       this.$q.loading.show();
+       if (this.selected.length > 0) {
+        this.selected.forEach(
+          (organisation) => {
+           this.$api.organisations
+           .destroy(organisation.id)
+           .then(() => {
+            this.onRequest();
+           })
+           .finally(() => {
+            this.selected = []
+            this.$q.loading.hide()
+           });
+          },
+        );
+       }
+      },
+      onRequest() {
+       this.loading = true;
+       this.$api.organisations
+       .index()
+       .then(
+         (response) => {
+          this.parseResponseData(response.data);
+         },
+       )
+       .finally(
+         () => {
+          this.loading = false;
+         },
+       );
+      },
+      parseResponseData(responseData) {
+       this.data = [];
+       responseData.forEach(
+         (record) => {
+          console.log(record)
+          this.data.push({
+           id: record.id,
+           name: record.name,
+           formOfOwnership: record.form_of_ownership,
+           inn: record.inn,
+           ogrn: record.ogrn,
+          });
+         },
+       );
       },
     },
   };

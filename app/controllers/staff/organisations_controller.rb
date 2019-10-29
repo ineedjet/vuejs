@@ -3,7 +3,7 @@ class Staff::OrganisationsController < ApplicationController
   before_action :set_organisation, only: %i[destroy]
 
   def index
-    @organisations = Organisation.order(created_at: :desc)
+    @organisations = Organisation.order(created_at: :asc)
     render json: @organisations
   end
 
