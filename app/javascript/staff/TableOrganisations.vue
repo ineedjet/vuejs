@@ -62,18 +62,13 @@
     },
     methods: {
       disableDeleteBtn() {
-       if (this.selected.length === 0) {
-        this.disableBtn = true;
-       } else {
-        this.disableBtn = false;
-       }
+        this.disableBtn = this.selected.length === 0
       },
       getOrganisations() {
         this.$api.organisations
           .index()
-          .then(
-            (response) => {
-              this.organisations = response.data;
+          .then(({data}) => {
+              this.organisations = data;
             },
           );
       },
@@ -81,9 +76,9 @@
        this.$q.loading.show();
        if (this.selected.length > 0) {
         this.selected.forEach(
-          (organisation) => {
+          ({id}) => {
            this.$api.organisations
-           .destroy(organisation.id)
+           .destroy(id)
            .then(() => {
             this.onRequest();
            })
@@ -99,13 +94,11 @@
        this.loading = true;
        this.$api.organisations
        .index()
-       .then(
-         (response) => {
-          this.parseResponseData(response.data);
+       .then(({data}) => {
+          this.parseResponseData(data);
          },
        )
-       .finally(
-         () => {
+       .finally(() => {
           this.loading = false;
          },
        );
@@ -114,7 +107,6 @@
        this.data = [];
        responseData.forEach(
          (record) => {
-          console.log(record)
           this.data.push({
            id: record.id,
            name: record.name,

@@ -1,26 +1,38 @@
 <template lang='pug'>
  #organisation-form
-  form(@submit.prevent='createOrganisation')
+  q-form(@submit.prevent='createOrganisation')
     #name
-     label(for='name') Name
-     input(v-model="name")
-     span.error(v-if="nameError") Minimum 5 characters
+     q-input(
+       filled
+       v-model="name"
+       label="Name"
+       :rules="[() => !nameError || 'Minimum 5 characters']"
+     )
     #inn
-     label(for='inn') Inn
-     input(v-model="inn")
-     span.error(v-if="innError") Not empty
+      q-input(
+        filled
+        v-model="inn"
+        label="Inn"
+        :rules="[() => !innError || 'Field is required']"
+      )
     #ogrn
-     label(for='ogrn') Ogrn
-     input(v-model="ogrn")
-     span.error(v-if="ogrnError") Not empty
+      q-input(
+        filled
+        v-model="ogrn"
+        label="Ogrn"
+        :rules="[() => !ogrnError || 'Field is required']"
+      )
     #form_of_ownership
-     label(for='form_of_ownership') Form of ownership
-     input(v-model="formOfOwnership")
-     span.error(v-if="formOfOwnershipError") Not empty
+     q-input(
+       filled
+       v-model="formOfOwnership"
+       label="Form of ownership"
+       :rules="[() => !formOfOwnershipError || 'Field is required']"
+      )
 
     p.api-errors {{ apiErrors }}
 
-    button(:disabled='nameError || innError || ogrnError') Save
+    q-btn(type="submit" :disabled='nameError || innError || ogrnError || formOfOwnershipError') Save
  </template>
 
 <script>
