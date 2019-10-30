@@ -12,10 +12,17 @@ const adapter = axios.create({
 });
 
 const clients = {
-  post: (client) => adapter.post('/staff/clients', { client }),
-  get_index: () => adapter.get('/staff/clients')
+  create: (client) => adapter.post('/staff/clients', { client }),
+  index: () => adapter.get('/staff/clients')
+};
+
+const organisations = {
+  create: (organisation) => adapter.post('/staff/organisations', { organisation }),
+  index: () => adapter.get('/staff/organisations'),
+  destroy: (id) => adapter.delete(`/staff/organisations/${id}`),
 };
 
 export default {
-  clients
+  clients,
+  organisations
 };

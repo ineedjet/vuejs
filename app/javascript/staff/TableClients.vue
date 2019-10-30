@@ -30,7 +30,7 @@
     methods: {
       getClients() {
         this.$api.clients
-          .get_index()
+          .index()
           .then(
             (response) => {
               this.clients = response.data;
