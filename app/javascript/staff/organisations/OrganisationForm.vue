@@ -1,5 +1,6 @@
 <template lang='pug'>
  #organisation-form
+  h6 добавить:
   q-form(@submit.prevent='createOrganisation')
     #name
      q-input(
@@ -36,7 +37,7 @@
  </template>
 
 <script>
- import eventBus from './EventBus';
+ import eventBus from '../EventBus';
  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
  export default {
@@ -85,24 +86,6 @@
 
 <style scoped lang="scss">
   #organisation-form {
-    text-align: center;
-    margin: 50px auto 0;
-    input{
-      width: 150px;
-      display: inline-block;
-    }
-    label {
-     margin-right: 10px;
-     width: 150px;
-     display: inline-block;
-    }
-    .error{
-      margin-left: 10px;
-      color: red;
-    }
-    button {
-     margin-top: 10px;
-    }
     p.api-errors {
       color: red;
     }

@@ -27,7 +27,7 @@
  </template>
 
 <script>
- import eventBus from './EventBus';
+ import eventBus from '../EventBus';
  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
  export default {
@@ -79,22 +79,6 @@
   #client-form {
     text-align: center;
     margin: 50px auto 0;
-    input{
-      width: 150px;
-      display: inline-block;
-    }
-    label {
-     margin-right: 10px;
-     width: 150px;
-     display: inline-block;
-    }
-    .error{
-      margin-left: 10px;
-      color: red;
-    }
-    button {
-     margin-top: 10px;
-    }
     p.api-errors {
       color: red;
     }

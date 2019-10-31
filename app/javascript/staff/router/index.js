@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Clients from '../StaffDashboard.vue';
-import Organizations from '../StaffDashboard.vue';
+import Clients from '../clients/Clients.vue';
+import Organizations from '../organisations/Organisations.vue';
 import Staffs from '../StaffDashboard.vue';
 
 Vue.use(VueRouter);

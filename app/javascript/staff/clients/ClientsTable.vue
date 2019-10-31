@@ -6,16 +6,16 @@
          th(scope='col') Phone
          th(scope='col') Email
      tbody
-       TableClientRow(v-for="client in clients" :client="client" :key="client.id")
+       ClientsTableRow(v-for="client in clients" :client="client" :key="client.id")
  </template>
 
 <script>
-  import eventBus from './EventBus';
-  import TableClientRow from './TableClientRow.vue';
+  import eventBus from '../EventBus';
+  import ClientsTableRow from './ClientsTableRow.vue';
 
   export default {
     components: {
-      TableClientRow,
+     ClientsTableRow,
     },
     data() {
       return {

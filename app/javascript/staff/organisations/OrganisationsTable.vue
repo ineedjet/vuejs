@@ -1,5 +1,5 @@
 <template lang='pug'>
-  .row.justify-center
+  .organisations-table
      q-table(
        flat
        :data="data"
@@ -22,8 +22,8 @@
 </template>
 
 <script>
-  import eventBus from './EventBus';
-  import TableOrganisationRow from './TableOrganisationRow.vue';
+  import eventBus from '../EventBus';
+  import TableOrganisationRow from './OrganisationsTableRow.vue';
 
   export default {
     components: {
@@ -122,8 +122,9 @@
 </script>
 
 <style scoped lang="scss">
-  table {
-   text-align: center;
+  .organisations-table {
+    padding-bottom: 20px;
+    text-align: center;
     margin: auto;
     th, td {
      padding: 10px 20px;
