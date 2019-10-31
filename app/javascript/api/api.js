@@ -17,6 +17,12 @@ const clients = {
   destroy: (id) => adapter.delete(`/staff/clients/${id}`),
 };
 
+const staffs = {
+  create: (staff) => adapter.post('/staff/staffs', { staff }),
+  index: () => adapter.get('/staff/staffs'),
+  destroy: (id) => adapter.delete(`/staff/staffs/${id}`),
+};
+
 const organisations = {
   create: (organisation) => adapter.post('/staff/organisations', { organisation }),
   index: () => adapter.get('/staff/organisations'),
@@ -25,5 +31,6 @@ const organisations = {
 
 export default {
   clients,
+  staffs,
   organisations
 };

@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 
 import Clients from '../clients/Clients.vue';
 import Organizations from '../organisations/Organisations.vue';
-import Staffs from '../StaffDashboard.vue';
+import Staffs from '../staffs/Staffs.vue';
 
 Vue.use(VueRouter);
 

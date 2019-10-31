@@ -10,13 +10,11 @@
 
 <script>
   import Navbar from './../Navbar.vue';
-  import StaffDashboard from './StaffDashboard.vue';
   import Drawer from './Drawer.vue';
 
   export default {
     components: {
       Navbar,
-      StaffDashboard,
       Drawer
     },
     props: {
