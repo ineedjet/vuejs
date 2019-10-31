@@ -1,4 +1,4 @@
-class Staff::ClientsController < ApplicationController
+class Api::Staff::ClientsController < ApplicationController
   before_action :authenticate_staff!
   before_action :set_client, only: %i[destroy]
 

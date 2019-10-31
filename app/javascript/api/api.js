@@ -8,7 +8,7 @@ axios.defaults.headers.common = {
 };
 
 const adapter = axios.create({
-  baseURL: '/',
+  baseURL: '/api/',
 });
 
 const clients = {

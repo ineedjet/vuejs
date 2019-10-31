@@ -5,16 +5,22 @@ Rails.application.routes.draw do
 
   root 'application#index'
 
+  namespace :api do
+    namespace :staff do
+      resources :clients, only: %i[index create destroy], shallow: true
+      resources :staffs, only: %i[index create destroy], shallow: true
+      resources :organisations, only: %i[index create destroy], shallow: true
+    end
+  end
+
   namespace :staff do
     root 'landing#index'
-    resources :clients, only: %i[index create destroy], shallow: true
-    resources :staffs, only: %i[index create destroy], shallow: true
-    resources :organisations, only: %i[index create destroy], shallow: true
-
     get '/*slug', to: 'landing#index'
   end
 
   namespace :client do
     root 'landing#index'
+    get '/*slug', to: 'landing#index'
   end
+
 end
