@@ -13,7 +13,8 @@ const adapter = axios.create({
 
 const clients = {
   create: (client) => adapter.post('/staff/clients', { client }),
-  index: () => adapter.get('/staff/clients')
+  index: () => adapter.get('/staff/clients'),
+  destroy: (id) => adapter.delete(`/staff/clients/${id}`),
 };
 
 const organisations = {

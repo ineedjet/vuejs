@@ -1,29 +1,39 @@
 <template lang='pug'>
- #client-form
-  form(@submit.prevent='createClient')
-    #name
-     label(for='name') Name
-     input(v-model="name")
-     span.error(v-if="nameError") Minimum 5 characters
-    #phone
-     label(for='phone') Phone
-     input(v-model="phone")
-     span.error(v-if="phoneError") Not empty, numbers
-    #email
-     label(for='email') Email
-     input(v-model="email")
-     span.error(v-if="emailError") Not empty, email
-    br
-    #password
-     label(for='email') Password
-     input(v-model="password")
-    #password-confirmation
-     label(for='email') Password confirmation
-     input(v-model="passwordConfirmation")
-
-    p.api-errors {{ apiErrors }}
-
-    button(:disabled='nameError || nameError || emailError') Save
+  .client-form
+    h6 добавить:
+    form(@submit.prevent='createClient')
+      q-input(
+        filled
+        v-model="name"
+        label="Name"
+        :rules="[() => !nameError || 'Minimum 5 characters']"
+      )
+      q-input(
+        filled
+        v-model="phone"
+        label="Phone"
+        :rules="[() => !phoneError || 'Not empty, numbers']"
+      )
+      q-input(
+        filled
+        v-model="email"
+        label="Email"
+        :rules="[() => !emailError || 'Not empty, email']"
+      )
+      q-input(
+        filled
+        v-model="password"
+        label="Password"
+      )
+      br
+      br
+      q-input(
+        filled
+        v-model="passwordConfirmation"
+        label="Password confirmation"
+      )
+      p.api-errors {{ apiErrors }}
+      q-btn(type="submit" :disabled='nameError || phoneError || emailError') Save
  </template>
 
 <script>
@@ -49,7 +59,7 @@
    methods: {
      createClient() {
      this.$api.clients
-         .post({
+         .create({
            name: this.name,
            email: this.email,
            phone: this.phone,
@@ -76,11 +86,9 @@
 </script>
 
 <style scoped lang="scss">
-  #client-form {
-    text-align: center;
-    margin: 50px auto 0;
-    p.api-errors {
-      color: red;
-    }
+ .client-form {
+  p.api-errors {
+   color: red;
   }
+ }
 </style>

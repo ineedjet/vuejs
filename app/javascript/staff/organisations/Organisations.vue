@@ -1,5 +1,5 @@
 <template lang='pug'>
-  .staff-dashboard
+  .organisations
     h4.text-center Организации:
     OrganisationsTable
     OrganisationForm
@@ -31,7 +31,7 @@
 </script>
 
 <style scoped lang="scss">
-  .staff-dashboard{
+  .organisations{
     padding: 20px;
   }
 </style>

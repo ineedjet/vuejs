@@ -23,12 +23,7 @@
 
 <script>
   import eventBus from '../EventBus';
-  import TableOrganisationRow from './OrganisationsTableRow.vue';
-
   export default {
-    components: {
-      TableOrganisationRow,
-    },
     data() {
       return {
        disableBtn: true,

@@ -1,5 +1,5 @@
 <template lang='pug'>
-  #staff-dashboard
+  .clients
     h4.text-center Клиенты:
     ClientsTable
     ClientForm
@@ -31,4 +31,7 @@
 </script>
 
 <style scoped lang="scss">
+  .clients{
+    padding: 20px;
+  }
 </style>

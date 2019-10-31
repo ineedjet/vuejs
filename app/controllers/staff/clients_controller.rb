@@ -1,8 +1,9 @@
 class Staff::ClientsController < ApplicationController
   before_action :authenticate_staff!
+  before_action :set_client, only: %i[destroy]
 
   def index
-    @clients = Client.order(created_at: :desc)
+    @clients = Client.order(created_at: :asc)
     render json: @clients
   end
 
@@ -16,9 +17,19 @@ class Staff::ClientsController < ApplicationController
     end
   end
 
+  def destroy
+    @client.destroy
+
+    head :no_content
+  end
+
   private
 
   def client_params
     params.require(:client).permit(:name, :email, :phone, :password, :password_confirmation)
+  end
+
+  def set_client
+    @client = Client.find(params[:id])
   end
 end

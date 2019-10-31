@@ -1,39 +1,33 @@
 <template lang='pug'>
- #organisation-form
-  h6 добавить:
-  q-form(@submit.prevent='createOrganisation')
-    #name
-     q-input(
-       filled
-       v-model="name"
-       label="Name"
-       :rules="[() => !nameError || 'Minimum 5 characters']"
-     )
-    #inn
+  .organisation-form
+    h6 добавить:
+    q-form(@submit.prevent='createOrganisation')
+      q-input(
+        filled
+        v-model="name"
+        label="Name"
+        :rules="[() => !nameError || 'Minimum 5 characters']"
+      )
       q-input(
         filled
         v-model="inn"
         label="Inn"
         :rules="[() => !innError || 'Field is required']"
       )
-    #ogrn
       q-input(
         filled
         v-model="ogrn"
         label="Ogrn"
         :rules="[() => !ogrnError || 'Field is required']"
       )
-    #form_of_ownership
-     q-input(
-       filled
-       v-model="formOfOwnership"
-       label="Form of ownership"
-       :rules="[() => !formOfOwnershipError || 'Field is required']"
-      )
-
-    p.api-errors {{ apiErrors }}
-
-    q-btn(type="submit" :disabled='nameError || innError || ogrnError || formOfOwnershipError') Save
+      q-input(
+        filled
+        v-model="formOfOwnership"
+        label="Form of ownership"
+        :rules="[() => !formOfOwnershipError || 'Field is required']"
+       )
+      p.api-errors {{ apiErrors }}
+      q-btn(type="submit" :disabled='nameError || innError || ogrnError || formOfOwnershipError') Save
  </template>
 
 <script>
@@ -85,7 +79,7 @@
 </script>
 
 <style scoped lang="scss">
-  #organisation-form {
+  .organisation-form {
     p.api-errors {
       color: red;
     }
