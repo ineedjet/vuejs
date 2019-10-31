@@ -36,6 +36,7 @@ import {
   QItemLabel,
 } from 'quasar'
 
+import router from '../staff/router/index';
 import Staff from '../staff/Staff.vue'
 import api from '../api/api';
 
@@ -89,7 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
         email: document.body.getAttribute('data-email'),
         role: "staff"
       }
-    })
+    }),
+    router
   }).$mount()
   document.body.appendChild(app.$el)
 })

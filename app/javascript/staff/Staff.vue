@@ -2,20 +2,22 @@
   q-layout(view="hHh lpR fFf")
     q-header(elevated)
      navbar(v-bind:email="email" v-bind:role="role")
+    Drawer
     q-page-container
       q-page.doc-page
-        p {{ message }}
-        StaffDashboard
+        router-view
 </template>
 
 <script>
   import Navbar from './../Navbar.vue';
   import StaffDashboard from './StaffDashboard.vue';
+  import Drawer from './Drawer.vue';
 
   export default {
     components: {
       Navbar,
-      StaffDashboard
+      StaffDashboard,
+      Drawer
     },
     props: {
       email: {
@@ -44,6 +46,6 @@
     text-align: center;
   }
   .q-page-container{
-    margin: 20px;
+    margin: 0px;
   }
 </style>

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     root 'landing#index'
     resources :clients, only: %i[index create], shallow: true
     resources :organisations, only: %i[index create destroy], shallow: true
+
+    get '/*slug', to: 'landing#index'
   end
 
   namespace :client do
