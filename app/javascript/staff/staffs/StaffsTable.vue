@@ -13,6 +13,29 @@
       :selected.sync="selected"
       row-key="id"
     )#staffs.full-width
+      template(v-slot:top)
+        .row.justify-center
+          .col
+            q-btn(
+              label="Удалить"
+              @click="destroy"
+              :disable='disableBtn'
+            )
+          .col
+            q-btn(
+              label="Сбросить пароль"
+              no-wrap
+              @click="reset"
+              :disable='disableBtn'
+            )
+      template(v-slot:body-cell-edit="cellProperties")
+        q-td(:props="cellProperties")
+          q-btn(
+              label="Редактировать"
+              no-wrap
+              :to="{ name: 'editStaff', params: { id: cellProperties.row.id.toString() } }"
+            )
+    router-view
     .row.justify-center
       q-btn(
         label="Удалить"
@@ -28,7 +51,7 @@
     return {
      disableBtn: true,
      selected: [],
-     visibleColumns: ['name', 'phone', 'email'],
+     visibleColumns: ['name', 'phone', 'email', 'edit'],
      loading: false,
      pagination: {
       page: 1,
@@ -39,6 +62,7 @@
       { name: 'name', label: 'Name', field: 'name' },
       { name: 'phone', label: 'Phone', field: 'phone' },
       { name: 'email', label: 'Email', field: 'email' },
+      { name: 'edit', label: '', field: 'edit' },
      ],
      data: [],
 
@@ -66,6 +90,7 @@
        },
      );
     },
+    reset() { alert('reset!') },
     destroy() {
      this.$q.loading.show();
      if (this.selected.length > 0) {

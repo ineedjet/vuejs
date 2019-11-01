@@ -15,12 +15,16 @@ const clients = {
   create: (client) => adapter.post('/staff/clients', { client }),
   index: () => adapter.get('/staff/clients'),
   destroy: (id) => adapter.delete(`/staff/clients/${id}`),
+  edit: (id) => adapter.get(`/staff/clients/${id}/edit`),
+  update: (id, client) => adapter.patch(`/staff/clients/${id}`, { client }),
 };
 
 const staffs = {
   create: (staff) => adapter.post('/staff/staffs', { staff }),
   index: () => adapter.get('/staff/staffs'),
   destroy: (id) => adapter.delete(`/staff/staffs/${id}`),
+  edit: (id) => adapter.get(`/staff/staffs/${id}/edit`),
+  update: (id, staff) => adapter.patch(`/staff/staffs/${id}`, { staff }),
 };
 
 const organisations = {

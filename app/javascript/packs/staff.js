@@ -7,6 +7,7 @@ import '../assets/styles/quasar.styl'
 import 'quasar/dist/quasar.ie.polyfills'
 
 import {
+  ClosePopup,
   Quasar,
   QLayout,
   QHeader,
@@ -19,6 +20,7 @@ import {
   QSpace,
   QBtn,
   QChip,
+  QDialog,
   QTable,
   QTh,
   QTr,
@@ -58,6 +60,7 @@ Vue.use(Quasar, {
     QSpace,
     QBtn,
     QChip,
+    QDialog,
     QTable,
     QTh,
     QTr,
@@ -74,6 +77,7 @@ Vue.use(Quasar, {
     QItemLabel,
   },
   directives: {
+    ClosePopup,
   },
   iconSet,
   plugins: {

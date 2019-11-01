@@ -1,6 +1,6 @@
 class Api::Staff::StaffsController < ApplicationController
   before_action :authenticate_staff!
-  before_action :set_staff, only: %i[destroy]
+  before_action :set_staff, only: %i[destroy edit update]
 
   def index
     @staffs = Staff.order(created_at: :asc)
@@ -12,6 +12,18 @@ class Api::Staff::StaffsController < ApplicationController
 
     if @staff.save
       render json: @staff, status: :created
+    else
+      render json: @staff.errors.as_json, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    render json: @staff, status: :ok
+  end
+
+  def update
+    if @staff.update(staff_params)
+      head :no_content
     else
       render json: @staff.errors.as_json, status: :unprocessable_entity
     end

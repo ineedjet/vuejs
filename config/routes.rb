@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :staff do
-      resources :clients, only: %i[index create destroy], shallow: true
-      resources :staffs, only: %i[index create destroy], shallow: true
+      resources :clients
+      resources :staffs
       resources :organisations, only: %i[index create destroy], shallow: true
     end
   end
