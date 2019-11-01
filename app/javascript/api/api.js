@@ -39,9 +39,15 @@ const interactions = {
   create: (interaction) => adapter.post('/staff/interactions', { interaction }),
 };
 
+const equipments = {
+  create: (organisationId, equipment) => adapter.post(`/staff/organisations/${organisationId}/equipments`, { equipment }),
+  validate: (organisationId, equipment) => adapter.post(`/staff/organisations/${organisationId}/equipments/validate`, { equipment }),
+};
+
 export default {
   clients,
   staffs,
   organisations,
   interactions,
+  equipments
 };

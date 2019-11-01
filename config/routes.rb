@@ -17,7 +17,13 @@ Rails.application.routes.draw do
           patch :reset_password
         end
       end
-      resources :organisations, only: %i[index create destroy], shallow: true
+      resources :organisations, only: %i[index create destroy], shallow: true do
+        resources :equipments, only: %i[create], shallow: true do
+          collection do
+            post :validate
+          end
+        end
+      end
       resources :interactions, only: %i[create], shallow: true
     end
   end

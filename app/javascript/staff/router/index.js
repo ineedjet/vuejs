@@ -8,6 +8,7 @@ import Staffs from '../staffs/Staffs.vue';
 import ClientEditDialog from '../clients/ClientEditDialog.vue';
 import StaffEditDialog from '../staffs/StaffEditDialog.vue';
 import ClientBindOrganisationDialog from '../clients/ClientBindOrganisationDialog.vue';
+import OrganisationAddEquipmentDialog from '../organisations/OrganisationAddEquipmentDialog.vue';
 
 Vue.use(VueRouter);
 
@@ -32,7 +33,19 @@ export default new VueRouter({
         },
       ]
     },
-    { path: '/organisations', component: Organisations, name: 'organisations' },
+    {
+      path: '/organisations',
+      component: Organisations,
+      name: 'organisations',
+      children: [
+        {
+          path: '/organisations/:id/equipment',
+          component: OrganisationAddEquipmentDialog,
+          name: 'addEquipment',
+          props: true,
+        },
+      ],
+    },
     { path: '/staffs', component: Staffs, name: 'staffs', children:
       [
         {
