@@ -5,7 +5,7 @@ class Client < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :interactions
-  has_many :organizations, through: :interactions, dependent: :destroy
+  has_many :organisations, through: :interactions, dependent: :destroy
 
   def reset_password!
     self.password = Devise.friendly_token.first(10)

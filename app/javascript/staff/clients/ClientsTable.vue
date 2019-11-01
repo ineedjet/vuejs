@@ -14,20 +14,23 @@
       row-key="id"
     )#clients.full-width
       template(v-slot:top)
-        .row.justify-center
-          .col
-            q-btn(
-              label="Удалить"
-              @click="destroy"
-              :disable='disableBtn'
-            )
-          .col
-            q-btn(
-              label="Сбросить пароль"
-              no-wrap
-              @click="reset"
-              :disable='disableBtn'
-            )
+        q-btn(
+          label="Удалить"
+          @click="destroy"
+          :disable='disableBtn'
+        )
+        q-btn(
+          label="Сбросить пароль"
+          no-wrap
+          @click="reset"
+          :disable='disableBtn'
+        )
+        q-btn(
+          label="Связать с организацией"
+          no-wrap
+          :disable='disableBtn'
+          :to="{ name: 'bindOrganisation', params: { selected: selected } }"
+        )
       template(v-slot:body-cell-edit="cellProperties")
         q-td(:props="cellProperties")
           q-btn(

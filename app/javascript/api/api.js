@@ -35,8 +35,13 @@ const organisations = {
   destroy: (id) => adapter.delete(`/staff/organisations/${id}`),
 };
 
+const interactions = {
+  create: (interaction) => adapter.post('/staff/interactions', { interaction }),
+};
+
 export default {
   clients,
   staffs,
-  organisations
+  organisations,
+  interactions,
 };

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
         end
       end
       resources :organisations, only: %i[index create destroy], shallow: true
+      resources :interactions, only: %i[create], shallow: true
     end
   end
 

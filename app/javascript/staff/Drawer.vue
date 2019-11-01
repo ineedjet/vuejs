@@ -6,7 +6,7 @@
      q-list(padding)
        q-item(clickable :to="{ name: 'clients' }")
          q-item-section Клиенты
-       q-item(clickable :to="{ name: 'organizations' }")
+       q-item(clickable :to="{ name: 'organisations' }")
          q-item-section Организации
        q-item(clickable :to="{ name: 'staffs' }")
          q-item-section Сотрудники

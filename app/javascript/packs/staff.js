@@ -10,6 +10,7 @@ import {
   ClosePopup,
   Quasar,
   QLayout,
+  QCardSection,
   QHeader,
   QDrawer,
   QPageContainer,
@@ -50,6 +51,7 @@ Vue.use(Quasar, {
   },
   components: {
     QLayout,
+    QCardSection,
     QHeader,
     QDrawer,
     QPageContainer,
