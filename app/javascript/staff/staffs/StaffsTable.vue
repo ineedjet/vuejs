@@ -90,7 +90,23 @@
        },
      );
     },
-    reset() { alert('reset!') },
+    reset() {
+     this.$q.loading.show();
+     if (this.selected.length > 0) {
+      this.selected.forEach(
+        (staff) => {
+         this.$api.staffs
+         .reset_password(staff.id)
+         .then(() => {
+          this.selected = [];
+         })
+         .finally(() => {
+          this.$q.loading.hide();
+         });
+        },
+      );
+     }
+    },
     destroy() {
      this.$q.loading.show();
      if (this.selected.length > 0) {

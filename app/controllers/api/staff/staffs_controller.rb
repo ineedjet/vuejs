@@ -1,6 +1,6 @@
 class Api::Staff::StaffsController < ApplicationController
   before_action :authenticate_staff!
-  before_action :set_staff, only: %i[destroy edit update]
+  before_action :set_staff, only: %i[destroy edit update reset_password]
 
   def index
     @staffs = Staff.order(created_at: :asc)
@@ -31,6 +31,13 @@ class Api::Staff::StaffsController < ApplicationController
 
   def destroy
     @staff.destroy
+
+    head :no_content
+  end
+
+  def reset_password
+    @client.reset_password!
+    @client.send_reset_password_instructions
 
     head :no_content
   end

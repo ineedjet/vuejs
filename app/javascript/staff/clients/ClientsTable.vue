@@ -84,7 +84,23 @@
        },
      );
     },
-    reset() { alert('reset!') },
+    reset() {
+     this.$q.loading.show();
+     if (this.selected.length > 0) {
+      this.selected.forEach(
+        (client) => {
+         this.$api.clients
+         .reset_password(client.id)
+         .then(() => {
+          this.selected = [];
+         })
+         .finally(() => {
+          this.$q.loading.hide();
+         });
+        },
+      );
+     }
+    },
     destroy() {
      this.$q.loading.show();
      if (this.selected.length > 0) {

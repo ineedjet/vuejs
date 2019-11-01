@@ -7,8 +7,16 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :staff do
-      resources :clients
-      resources :staffs
+      resources :clients do
+        member do
+          patch :reset_password
+        end
+      end
+      resources :staffs do
+        member do
+          patch :reset_password
+        end
+      end
       resources :organisations, only: %i[index create destroy], shallow: true
     end
   end

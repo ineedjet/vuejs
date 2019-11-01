@@ -17,6 +17,7 @@ const clients = {
   destroy: (id) => adapter.delete(`/staff/clients/${id}`),
   edit: (id) => adapter.get(`/staff/clients/${id}/edit`),
   update: (id, client) => adapter.patch(`/staff/clients/${id}`, { client }),
+  reset_password: (id) => adapter.patch(`/staff/clients/${id}/reset_password`),
 };
 
 const staffs = {
@@ -25,6 +26,7 @@ const staffs = {
   destroy: (id) => adapter.delete(`/staff/staffs/${id}`),
   edit: (id) => adapter.get(`/staff/staffs/${id}/edit`),
   update: (id, staff) => adapter.patch(`/staff/staffs/${id}`, { staff }),
+  reset_password: (id) => adapter.patch(`/staff/staffs/${id}/reset_password`),
 };
 
 const organisations = {
