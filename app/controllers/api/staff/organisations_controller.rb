@@ -1,4 +1,4 @@
-class Staff::OrganisationsController < ApplicationController
+class Api::Staff::OrganisationsController < ApplicationController
   before_action :authenticate_staff!
   before_action :set_organisation, only: %i[destroy]
 

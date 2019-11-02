@@ -7,8 +7,10 @@ import '../assets/styles/quasar.styl'
 import 'quasar/dist/quasar.ie.polyfills'
 
 import {
+  ClosePopup,
   Quasar,
   QLayout,
+  QCardSection,
   QHeader,
   QDrawer,
   QPageContainer,
@@ -19,6 +21,7 @@ import {
   QSpace,
   QBtn,
   QChip,
+  QDialog,
   QTable,
   QTh,
   QTr,
@@ -36,6 +39,7 @@ import {
   QItemLabel,
 } from 'quasar'
 
+import router from '../staff/router/index';
 import Staff from '../staff/Staff.vue'
 import api from '../api/api';
 
@@ -47,6 +51,7 @@ Vue.use(Quasar, {
   },
   components: {
     QLayout,
+    QCardSection,
     QHeader,
     QDrawer,
     QPageContainer,
@@ -57,6 +62,7 @@ Vue.use(Quasar, {
     QSpace,
     QBtn,
     QChip,
+    QDialog,
     QTable,
     QTh,
     QTr,
@@ -73,6 +79,7 @@ Vue.use(Quasar, {
     QItemLabel,
   },
   directives: {
+    ClosePopup,
   },
   iconSet,
   plugins: {
@@ -89,7 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
         email: document.body.getAttribute('data-email'),
         role: "staff"
       }
-    })
+    }),
+    router
   }).$mount()
   document.body.appendChild(app.$el)
 })
