@@ -14,10 +14,6 @@
     props: {
       id: { type: String, default: '' },
     },
-    data() {
-      return {
-      };
-    },
   };
 </script>
 

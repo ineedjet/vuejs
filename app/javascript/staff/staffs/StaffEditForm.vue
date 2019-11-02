@@ -78,7 +78,7 @@
         this.$api.staffs
         .update(
           this.id,
-          { name: this.user.name, phone: this.user.phone, email: this.user.email },
+          this.user,
         )
         .then(
           () => {

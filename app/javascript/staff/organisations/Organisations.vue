@@ -22,11 +22,6 @@
         default: ''
       }
     },
-    data: function () {
-      return {
-        message: "Hello Staff!"
-      }
-    }
   }
 </script>
 
