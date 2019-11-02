@@ -1,15 +1,18 @@
 import axios from 'axios';
+import applyConverters from 'axios-case-converter';
 
 const metaCsrfToken = document.querySelector('meta[name="csrf-token"]');
 
 axios.defaults.headers.common = {
-  'X-Requested-With': 'XMLHttpRequest',
-  'X-CSRF-TOKEN': metaCsrfToken ? metaCsrfToken.getAttribute('content') : '',
+  'xRequestedWith': 'XMLHttpRequest',
+  'xCsrfToken': metaCsrfToken ? metaCsrfToken.getAttribute('content') : '',
 };
 
-const adapter = axios.create({
-  baseURL: '/api/',
-});
+const adapter = applyConverters(
+  axios.create({
+    baseURL: '/api/',
+  })
+);
 
 const clients = {
   create: (client) => adapter.post('/staff/clients', { client }),

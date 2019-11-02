@@ -4,25 +4,25 @@
     q-form(@submit.prevent='createOrganisation')
       q-input(
         filled
-        v-model="name"
+        v-model="organisation.name"
         label="Name"
         :rules="[() => !nameError || 'Minimum 5 characters']"
       )
       q-input(
         filled
-        v-model="inn"
+        v-model="organisation.inn"
         label="Inn"
         :rules="[() => !innError || 'Field is required']"
       )
       q-input(
         filled
-        v-model="ogrn"
+        v-model="organisation.ogrn"
         label="Ogrn"
         :rules="[() => !ogrnError || 'Field is required']"
       )
       q-input(
         filled
-        v-model="formOfOwnership"
+        v-model="organisation.formOfOwnership"
         label="Form of ownership"
         :rules="[() => !formOfOwnershipError || 'Field is required']"
        )
@@ -37,28 +37,25 @@
  export default {
    data() {
      return {
-       name: 'Organisation Name',
-       inn: '124954401728',
-       ogrn: '98765',
-       formOfOwnership: 'ООО',
+       organisation: {
+         name: 'Organisation Name',
+         inn: '124954401728',
+         ogrn: '98765',
+         formOfOwnership: 'ООО',
+       },
        apiErrors: ''
      };
    },
    computed: {
-     nameError: function () { return !(this.name.length > 4) },
-     innError: function () { return !(this.inn.length > 0) },
-     ogrnError: function () { return !(this.ogrn.length > 0) },
-     formOfOwnershipError: function () { return !(this.formOfOwnership.length > 0) }
+     nameError: function () { return !(this.organisation.name.length > 4) },
+     innError: function () { return !(this.organisation.inn.length > 0) },
+     ogrnError: function () { return !(this.organisation.ogrn.length > 0) },
+     formOfOwnershipError: function () { return !(this.organisation.formOfOwnership.length > 0) }
    },
    methods: {
      createOrganisation() {
      this.$api.organisations
-         .create({
-           name: this.name,
-           inn: this.inn,
-           ogrn: this.ogrn,
-           form_of_ownership: this.formOfOwnership
-         })
+         .create(this.organisation)
          .then(
            () => {
             this.user = {};

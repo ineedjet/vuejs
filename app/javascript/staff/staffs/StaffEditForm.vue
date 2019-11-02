@@ -38,17 +38,6 @@
         errors: [],
       };
     },
-    watch: {
-      name() {
-        this.user.name = this.name;
-      },
-      phone() {
-        this.user.phone = this.phone;
-      },
-      email() {
-        this.user.email = this.email;
-      },
-    },
     created() {
       this.onRequest();
     },
@@ -96,18 +85,6 @@
           this.$q.loading.hide();
         });
       },
-      setEmail(value) {
-        this.user.email = value;
-      },
-      setName(value) {
-        this.user.name = value;
-      },
-      setPhone(value) {
-        this.user.phone = value;
-      },
     },
   };
 </script>
-
-<style scoped lang="scss">
-</style>
