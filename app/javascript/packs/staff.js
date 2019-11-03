@@ -40,6 +40,7 @@ import {
 } from 'quasar'
 
 import router from '../staff/router/index';
+import store from '../store'
 import Staff from '../staff/Staff.vue'
 import api from '../api/api';
 
@@ -97,7 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
         role: "staff"
       }
     }),
-    router
+    router,
+    store
   }).$mount()
   document.body.appendChild(app.$el)
 })

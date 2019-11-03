@@ -1,37 +1,45 @@
 <template lang='pug'>
   .organisations-table
-     q-table(
-       flat
-       :data="data"
-       :columns="columns"
-       :visible-columns='visibleColumns'
-       @request="onRequest"
-       :pagination.sync="pagination"
-       :loading="loading"
-       loading-label='Loading organisations...'
-       selection="multiple"
-       :selected.sync="selected"
-       row-key="id"
-     )#organisations.full-width
-       template(v-slot:body-cell-actions="cellProperties")
-         q-td(:props="cellProperties")
-           q-btn(
-             label="Оборудование"
-             no-wrap
-             :to="{ name: 'addEquipment', params: { id: cellProperties.row.id.toString() } }"
-           )
-     .row.justify-center.q-gutter-md
-       q-btn(
-         label="Удалить"
-         @click="destroy"
-         :disable='disableBtn'
-       )
-     router-view
+    OrganisationsFilter
+    q-table(
+      flat
+      :data="organisations"
+      :columns="columns"
+      :visible-columns='visibleColumns'
+      @request="onRequest"
+      :pagination.sync="pagination"
+      :loading="loading"
+      loading-label='Loading organisations...'
+      selection="multiple"
+      :selected.sync="selected"
+      row-key="id"
+    )#organisations.full-width
+      template(v-slot:top)
+         h5(v-if="filter")
+           | Filtered by "{{ filter }}"
+      template(v-slot:body-cell-actions="cellProperties")
+        q-td(:props="cellProperties")
+          q-btn(
+          label="Оборудование"
+          no-wrap
+          :to="{ name: 'addEquipment', params: { id: cellProperties.row.id.toString() } }"
+         )
+    .row.justify-center.q-gutter-md
+      q-btn(
+        label="Удалить"
+        @click="destroy"
+        :disable='disableBtn'
+     )
+    router-view
 </template>
 
 <script>
   import eventBus from '../EventBus';
+  import OrganisationsFilter from './OrganisationsFilter.vue'
   export default {
+    components: {
+      OrganisationsFilter,
+    },
     data() {
       return {
        disableBtn: true,
@@ -50,9 +58,6 @@
         { name: 'ogrn', label: 'ОГРН', field: 'ogrn' },
         { name: 'actions', label: '', field: 'actions' },
        ],
-       data: [],
-
-       organisations: this.getOrganisations(),
       };
     },
     mounted() {
@@ -108,10 +113,10 @@
        );
       },
       parseResponseData(responseData) {
-       this.data = [];
+       this.organisations = [];
        responseData.forEach(
          (record) => {
-          this.data.push({
+          this.organisations.push({
            id: record.id,
            name: record.name,
            formOfOwnership: record.form_of_ownership,
@@ -122,6 +127,19 @@
        );
       },
     },
+    computed: {
+      filter() {
+        return this.$store.state.organisations.filter
+      },
+      organisations: {
+        get() {
+          return this.$store.state.organisations.list;
+        },
+        set(value) {
+          this.$store.commit("updateOrganisationsList", value);
+        }
+      },
+    }
   };
 </script>
 
