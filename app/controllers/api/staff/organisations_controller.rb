@@ -3,8 +3,12 @@ class Api::Staff::OrganisationsController < ApplicationController
   before_action :set_organisation, only: %i[destroy]
 
   def index
-    @organisations = Organisation.order(created_at: :asc)
-    render json: @organisations
+    find_organisations = ::FindOrganisations.new(Organisation.all, params)
+    @organisations = find_organisations.call(search_permitted_params)
+    org_presenter_meta = OrganisationPresenter.new().meta
+    meta = find_organisations.meta.merge(org_presenter_meta)
+
+    render json: OrganisationSerializer.new(@organisations, { meta: meta }).serialized_json
   end
 
   def create
@@ -24,6 +28,10 @@ class Api::Staff::OrganisationsController < ApplicationController
   end
 
   private
+
+  def search_permitted_params
+    params.permit(:filter, :sortBy, :descending, :page, :rowsPerPage, :rowsNumber)
+  end
 
   def organisation_params
     params.require(:organisation).permit(:name, :form_of_ownership, :inn, :ogrn)

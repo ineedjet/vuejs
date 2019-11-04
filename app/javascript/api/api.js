@@ -1,5 +1,6 @@
 import axios from 'axios';
 import applyConverters from 'axios-case-converter';
+import qs from 'qs';
 
 const metaCsrfToken = document.querySelector('meta[name="csrf-token"]');
 
@@ -34,7 +35,7 @@ const staffs = {
 
 const organisations = {
   create: (organisation) => adapter.post('/staff/organisations', { organisation }),
-  index: () => adapter.get('/staff/organisations'),
+  index: (props) => adapter.get('/staff/organisations?' + qs.stringify(props)),
   destroy: (id) => adapter.delete(`/staff/organisations/${id}`),
 };
 

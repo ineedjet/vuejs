@@ -1,4 +1,5 @@
 import Vue from 'vue'
+Vue.prototype.$eventBus = new Vue();
 
 import iconSet from 'quasar/icon-set/fontawesome-v5.js'
 import '@quasar/extras/fontawesome-v5/fontawesome-v5.css'
@@ -89,6 +90,10 @@ Vue.use(Quasar, {
 });
 
 Vue.prototype.$api = api;
+
+import ActionCableVue from 'actioncable-vue';
+import cableParams from '../utils/action-cable'
+Vue.use(ActionCableVue, cableParams);
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({

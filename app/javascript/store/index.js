@@ -3,22 +3,17 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+import organisations from './modules/organisations'
+import organisationFilter from './modules/organisation-filter'
+
 export default new Vuex.Store({
   state: {
-    organisations: {
-      list: [],
-      filter: '',
-    }
+    currentUser: null,
   },
-  mutations: {
-    updateOrganisationsFilter(state, value) {
-      state.organisations.filter = value;
-    },
-    updateOrganisationsList(state, value) {
-      state.organisations.list = value;
-    }
-  },
+  mutations: {},
   actions: {},
-  modules: {},
-  plugins: [],
+  modules: {
+    organisations,
+    organisationFilter,
+  },
 })

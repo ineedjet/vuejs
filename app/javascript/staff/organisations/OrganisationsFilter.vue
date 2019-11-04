@@ -13,7 +13,7 @@
           return this.$store.state.organisations.filter;
         },
         set(value) {
-          this.$store.commit("updateOrganisationsFilter", value);
+          this.$store.commit("updateFilter", value);
         }
       }
     }
