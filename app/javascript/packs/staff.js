@@ -1,4 +1,5 @@
 import Vue from 'vue'
+Vue.prototype.$eventBus = new Vue();
 
 import iconSet from 'quasar/icon-set/fontawesome-v5.js'
 import '@quasar/extras/fontawesome-v5/fontawesome-v5.css'
@@ -40,6 +41,7 @@ import {
 } from 'quasar'
 
 import router from '../staff/router/index';
+import store from '../store'
 import Staff from '../staff/Staff.vue'
 import api from '../api/api';
 
@@ -89,6 +91,10 @@ Vue.use(Quasar, {
 
 Vue.prototype.$api = api;
 
+import ActionCableVue from 'actioncable-vue';
+import cableParams from '../utils/action-cable'
+Vue.use(ActionCableVue, cableParams);
+
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     render: h => h(Staff, {
@@ -97,7 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
         role: "staff"
       }
     }),
-    router
+    router,
+    store
   }).$mount()
   document.body.appendChild(app.$el)
 })
